@@ -1,5 +1,6 @@
 import os
 import streamlit as st
+from dotenv import load_dotenv
 from typing_extensions import TypedDict
 from typing import Annotated, List
 from langchain_groq import ChatGroq
@@ -127,8 +128,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load API Keys (Set up in .env file)
-
-os.environ["GROQ_API_KEY"] = st.secrets("GROQ_API_KEY")
+load_dotenv()
+os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
 
 # Initialize LLM
 llm = ChatGroq(model="qwen-2.5-32b")
@@ -415,7 +416,7 @@ else:
             with st.expander(f"Question {i+1}: {ans['question']}"):
                 st.markdown(f"**Your Answer:**")
                 st.markdown(f"{ans['answer']}")
-                st.markdown(f'<div class="score-display {score_class}">Score: {ans["score"]}/5</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="score-display {score_class}">Score: {ans["score"]}/</div>', unsafe_allow_html=True)
                 st.markdown(f"**Feedback:**")
                 st.markdown(f"{ans['feedback']}")
         
