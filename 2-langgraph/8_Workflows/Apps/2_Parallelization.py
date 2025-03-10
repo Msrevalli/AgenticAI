@@ -168,7 +168,7 @@ st.title("AI-Powered Investment Analyzer")
 st.write("Analyze stocks, crypto, or real estate assets using AI-driven technical, fundamental, sentiment, and risk analysis.")
 
 # User Input
-asset = st.text_input("Enter an asset (e.g., Tesla, Bitcoin, NYC Real Estate)")
+asset_text = st.text_input("Enter an asset (e.g., Tesla, Bitcoin, NYC Real Estate)")
 with st.sidebar:
     st.subheader("Workflow Diagram")
 
@@ -184,8 +184,8 @@ with st.sidebar:
 
 
 if st.button("Analyze Investment"):
-    if asset:
-        state = investment_workflow.invoke({"investment_asset": asset})
+    if asset_text:
+        state = investment_workflow.invoke({"investment_asset": asset_text})
 
         # Display Investment Report
         st.subheader("Investment Report")
