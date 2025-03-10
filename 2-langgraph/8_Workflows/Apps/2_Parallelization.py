@@ -148,7 +148,6 @@ investment_builder.add_node("aggregator", aggregator)
 # Connect Nodes
 investment_builder.add_edge(START, "asset")
 investment_builder.add_edge("asset", "technical_analysis")
-investment_builder.add_edge("asset", "technical_analysis")
 investment_builder.add_edge("asset", "fundamental_analysis")
 investment_builder.add_edge("asset", "sentiment_analysis")
 investment_builder.add_edge("asset", "risk_analysis")
@@ -169,29 +168,85 @@ st.write("Analyze stocks, crypto, or real estate assets using AI-driven technica
 
 # User Input
 asset_text = st.text_input("Enter an asset (e.g., Tesla, Bitcoin, NYC Real Estate)")
+
+# Sidebar with workflow diagram
 with st.sidebar:
     st.subheader("Workflow Diagram")
 
-    # ✅ Generate Mermaid Workflow Diagram
+    # Generate Mermaid Workflow Diagram
     mermaid_diagram = investment_workflow.get_graph().draw_mermaid_png()
 
-    # ✅ Save and Display the Image in Sidebar
+    # Save and Display the Image in Sidebar
     image_path = "workflow_diagram.png"
     with open(image_path, "wb") as f:
         f.write(mermaid_diagram)
 
-    st.image(image_path, caption="Workflow Execution")
+    st.image(image_path, caption="Analysis Workflow")
 
 
 if st.button("Analyze Investment"):
     if asset_text:
-        state = investment_workflow.invoke({"investment_asset": asset_text})
+        with st.spinner(f"Analyzing {asset_text}... This may take a few minutes."):
+            state = investment_workflow.invoke({"investment_asset": asset_text})
 
-        # Display Investment Report
+        # Display executive summary at the top
+        st.header(f"Investment Analysis: {asset_text}")
+        
+        # Extract key recommendation (simple extraction - could be improved with parsing)
+        recommendation = "See final recommendation below"
+        if "recommendation" in state["final_report"].lower():
+            for line in state["final_report"].split("\n"):
+                if "recommendation" in line.lower():
+                    recommendation = line
+                    break
+                
+        st.info(f"Quick Take: {recommendation}")
+
+        # Expandable sections for detailed analysis
+        with st.expander("📊 Technical Analysis", expanded=False):
+            st.markdown(state["technical_insights"])
+            
+        with st.expander("💰 Fundamental Analysis", expanded=False):
+            st.markdown(state["fundamental_insights"])
+            
+        with st.expander("📰 Sentiment Analysis", expanded=False):
+            st.markdown(state["sentiment_insights"])
+            
+        with st.expander("⚠️ Risk Assessment", expanded=False):
+            st.markdown(state["risk_evaluation"])
+        
+        # Final report shown in main view
         st.subheader("Investment Report")
         st.markdown(state["final_report"])
+        
+        # Add download button for report
+        report_text = f"""# Investment Analysis: {asset_text}
+
+## Executive Summary
+{state["final_report"]}
+
+## Detailed Analysis
+
+### Technical Analysis
+{state["technical_insights"]}
+
+### Fundamental Analysis
+{state["fundamental_insights"]}
+
+### Sentiment Analysis
+{state["sentiment_insights"]}
+
+### Risk Assessment
+{state["risk_evaluation"]}
+"""
+        st.download_button(
+            label="Download Full Report",
+            data=report_text,
+            file_name=f"{asset_text.replace(' ', '_')}_investment_analysis.md",
+            mime="text/markdown"
+        )
+        
     else:
         st.warning("Please enter an asset to analyze.")
 
     st.markdown("### 🔗 Powered by LangGraph with Parallelization Workflow")
-    
