@@ -172,9 +172,10 @@ asset = st.text_input("Enter an asset (e.g., Tesla, Bitcoin, NYC Real Estate)")
 with st.sidebar:
     st.subheader("Workflow Diagram")
 
-    
+    # ✅ Generate Mermaid Workflow Diagram
     mermaid_diagram = investment_workflow.get_graph().draw_mermaid_png()
 
+    # ✅ Save and Display the Image in Sidebar
     image_path = "workflow_diagram.png"
     with open(image_path, "wb") as f:
         f.write(mermaid_diagram)
@@ -185,7 +186,6 @@ with st.sidebar:
 if st.button("Analyze Investment"):
     if asset:
         state = investment_workflow.invoke({"investment_asset": asset})
-
 
         # Display Investment Report
         st.subheader("Investment Report")
