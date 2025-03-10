@@ -192,3 +192,6 @@ if st.button("Analyze Investment"):
         st.markdown(state["final_report"])
     else:
         st.warning("Please enter an asset to analyze.")
+
+    st.markdown("### 🔗 Powered by LangGraph with Parallelization Workflow 🚀")
+    
