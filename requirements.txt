@@ -18,3 +18,4 @@ streamlit
 tenacity
 langgraph-api
 SpeechRecognition
+google-search-results
