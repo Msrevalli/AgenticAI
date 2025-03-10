@@ -313,6 +313,8 @@ if st.button("Analyze Pitch"):
             st.write(result["final_enhanced_pitch"])
 
         st.download_button("📥 Download Enhanced Pitch", result["final_enhanced_pitch"], file_name="enhanced_pitch.txt")
+        st.markdown("### 🔗 Powered by LangGraph with Prompt Chaining Workflow 🚀")
+        st.write("This AI-driven app analyzes and improves business pitches using advanced prompt chaining techniques.")
 
 
 # ✅ Display Workflow Diagram in Sidebar
@@ -328,6 +330,8 @@ with st.sidebar:
         f.write(mermaid_diagram)
 
     st.image(image_path, caption="Workflow Execution")
+
+    
 
 
 
