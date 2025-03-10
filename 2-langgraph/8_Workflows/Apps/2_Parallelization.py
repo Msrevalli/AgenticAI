@@ -148,7 +148,6 @@ investment_builder.add_node("aggregator", aggregator)
 # Connect Nodes
 investment_builder.add_edge(START, "asset")
 investment_builder.add_edge("asset", "technical_analysis")
-investment_builder.add_edge("asset", "technical_analysis")
 investment_builder.add_edge("asset", "fundamental_analysis")
 investment_builder.add_edge("asset", "sentiment_analysis")
 investment_builder.add_edge("asset", "risk_analysis")
@@ -185,13 +184,30 @@ with st.sidebar:
 
 if st.button("Analyze Investment"):
     if asset:
-        state = investment_workflow.invoke({"investment_asset": asset})
-
-        # Display Investment Report
-        st.subheader("Investment Report")
-        st.markdown(state["final_report"])
+        with st.spinner(f"Analyzing {asset}... This may take a few minutes."):
+            state = investment_workflow.invoke({"investment_asset": asset})
+        
+        # Display Executive Summary First
+        st.subheader(f"Investment Analysis: {asset}")
+        
+        # Display Final Report in Main Area
+        with st.expander("📊 Executive Summary", expanded=True):
+            st.markdown(state["final_report"])
+        
+        # Display Detailed Analysis Reports in Expanders
+        with st.expander("📈 Technical Analysis"):
+            st.markdown(state["technical_insights"])
+            
+        with st.expander("💰 Fundamental Analysis"):
+            st.markdown(state["fundamental_insights"])
+            
+        with st.expander("📰 Sentiment Analysis"):
+            st.markdown(state["sentiment_insights"])
+            
+        with st.expander("⚠️ Risk Assessment"):
+            st.markdown(state["risk_evaluation"])
+            
     else:
         st.warning("Please enter an asset to analyze.")
 
-    st.markdown("### 🔗 Powered by LangGraph with Parallelization Workflow 🚀")
-    
+    st.markdown("### 🔗 Powered by LangGraph with Parallelization Workflow")
