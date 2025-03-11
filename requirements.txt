@@ -19,3 +19,4 @@ tenacity
 langgraph-api
 SpeechRecognition
 google-search-results
+python-docx 
