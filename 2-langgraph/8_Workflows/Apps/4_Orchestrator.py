@@ -149,7 +149,7 @@ with st.sidebar:
     mermaid_diagram = orchestrator_worker.get_graph().draw_mermaid_png()
 
     # ✅ Save and Display the Image in Sidebar
-    image_path = "Orchestrator worker workflow_diagram.png"
+    image_path = "Orchestrator_worker_workflow_diagram.png"
     with open(image_path, "wb") as f:
         f.write(mermaid_diagram)
 
