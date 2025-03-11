@@ -137,7 +137,6 @@ employment agreements, and service contracts** using AI-powered legal analysis.
 ✅ **Upload Legal Documents** – Supports Word (`.docx`) and PDF (`.pdf`).  
 ✅ **AI-Enhanced Legal Processing** – Uses LLM for better clarity and readability.  
 ✅ **Download AI-Enhanced Documents** – Get the improved document in Word format.  
-
 ---
 """)
 with st.sidebar:
