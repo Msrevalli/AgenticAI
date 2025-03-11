@@ -119,6 +119,29 @@ orchestrator_worker = orchestrator_worker_builder.compile()
 
 # ---------------- STREAMLIT UI ----------------
 st.title("⚖️ LegalCraft AI")
+# **📌 Add Description**
+st.markdown("""
+### 🔹 Description
+The **AI-Powered Legal Document Processor** allows users to **upload legal documents** (Word/PDF),  
+analyze them with AI, and enhance legal clarity while maintaining the original structure.
+
+This tool is useful for **law firms, businesses, and individuals** who want to refine **contracts, NDAs,  
+employment agreements, and service contracts** using AI-powered legal analysis.
+
+### 🚀 How It Works
+1️⃣ **Upload a Legal Document** – Drag and drop a **Word or PDF** file.  
+2️⃣ **AI Enhances Legal Clauses** – AI improves clarity, structure, and terminology.  
+3️⃣ **Compare Documents** – View **Original vs. AI-enhanced** documents side-by-side.  
+4️⃣ **Download the AI-Enhanced Document** – Save the improved document as a **Word file**.  
+
+### 🔹 Key Features
+✅ **Upload Legal Documents** – Supports Word (`.docx`) and PDF (`.pdf`).  
+✅ **AI-Enhanced Legal Processing** – Uses GPT-4 for better clarity and readability.  
+✅ **Side-by-Side Comparison** – View **original vs. AI-enhanced** text in Markdown format.  
+✅ **Download AI-Enhanced Documents** – Get the improved document in Word format.  
+
+---
+""")
 with st.sidebar:
     st.subheader("Workflow Diagram")
 
