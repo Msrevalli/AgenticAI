@@ -129,15 +129,13 @@ This tool is useful for **law firms, businesses, and individuals** who want to r
 employment agreements, and service contracts** using AI-powered legal analysis.
 
 ### 🚀 How It Works
-1️⃣ **Upload a Legal Document** – Drag and drop a **Word or PDF** file.  
-2️⃣ **AI Enhances Legal Clauses** – AI improves clarity, structure, and terminology.  
-3️⃣ **Compare Documents** – View **Original vs. AI-enhanced** documents side-by-side.  
-4️⃣ **Download the AI-Enhanced Document** – Save the improved document as a **Word file**.  
+1 **Upload a Legal Document** – Drag and drop a **Word or PDF** file.  
+2 **AI Enhances Legal Clauses** – AI improves clarity, structure, and terminology.  e.  
+3 **Download the AI-Enhanced Document** – Save the improved document as a **Word file**.  
 
 ### 🔹 Key Features
 ✅ **Upload Legal Documents** – Supports Word (`.docx`) and PDF (`.pdf`).  
-✅ **AI-Enhanced Legal Processing** – Uses GPT-4 for better clarity and readability.  
-✅ **Side-by-Side Comparison** – View **original vs. AI-enhanced** text in Markdown format.  
+✅ **AI-Enhanced Legal Processing** – Uses LLM for better clarity and readability.  
 ✅ **Download AI-Enhanced Documents** – Get the improved document in Word format.  
 
 ---
